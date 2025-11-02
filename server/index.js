@@ -60,12 +60,11 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    const recipient = process.env.CONTACT_TARGET_EMAIL || process.env.SMTP_USER;
     const fromAddress = process.env.FROM_EMAIL || process.env.SMTP_USER;
 
     await transporter.sendMail({
       from: `"Portfolio Contact" <${fromAddress}>`,
-      to: recipient,
+      to: email,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
       text: `New portfolio message from ${name} <${email}>.
