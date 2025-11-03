@@ -97,13 +97,13 @@ export const experience: Experience[] = [
   {
     company: 'Unirac Limited',
     position: 'Full Stack Developer',
-    period: 'Mar 2022 – Mar 2025',
+    period: 'Mar 2022 – Present',
     description: 'Developed and maintained scalable web applications for solar engineering solutions.',
   },
-  {
-    company: 'Aesthetic IT Soft, Hyderabad',
-    position: 'React & Backend Developer',
-    period: 'Feb 2020 – Mar 2022',
-    description: 'Built responsive UI components and backend APIs for various client projects.',
-  },
+  // {
+  //   company: 'Aesthetic IT Soft, Hyderabad',
+  //   position: 'React & Backend Developer',
+  //   period: 'Feb 2020 – Mar 2022',
+  //   description: 'Built responsive UI components and backend APIs for various client projects.',
+  // },
 ];
