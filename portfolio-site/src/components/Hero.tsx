@@ -13,6 +13,12 @@ const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearTimer = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
 
   useEffect(() => {
     const current = roles[roleIndex % roles.length];
@@ -24,7 +30,7 @@ const Hero: React.FC = () => {
 
     if (!isDeleting && displayText === current) {
       timeoutRef.current = setTimeout(() => setIsDeleting(true), endPause);
-      return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+      return clearTimer;
     }
 
     if (isDeleting && displayText === '') {
@@ -32,7 +38,7 @@ const Hero: React.FC = () => {
         setIsDeleting(false);
         setRoleIndex((i) => (i + 1) % roles.length);
       }, startPause);
-      return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+      return clearTimer;
     }
 
     timeoutRef.current = setTimeout(() => {
@@ -42,7 +48,7 @@ const Hero: React.FC = () => {
       setDisplayText(nextText);
     }, isDeleting ? deletingSpeed : typingSpeed);
 
-    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+    return clearTimer;
   }, [displayText, isDeleting, roleIndex, roles]);
 
   return (

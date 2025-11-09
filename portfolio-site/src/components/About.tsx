@@ -31,7 +31,7 @@ const About: React.FC = () => {
           </div>
 
           <div className={styles.experience}>
-            <h3 className={styles.experienceTitle}>Professional Experience</h3>
+            <h3 className={styles.experienceTitle}>Recent Professional Experience</h3>
             {experience.map((exp, index) => (
               <div key={index} className={styles.experienceItem}>
                 <div className={styles.expHeader}>
