@@ -344,6 +344,23 @@
   }
 }
 
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .contactInfo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .infoCard {
+    padding: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .contact {
     padding: 60px 20px;
@@ -365,5 +382,29 @@
 
   .contactInfo {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Small phone adjustments */
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .infoIcon {
+    font-size: 28px;
+  }
+
+  .infoCard h3 {
+    font-size: 15px;
+  }
+
+  .infoCard a,
+  .infoCard p {
+    font-size: 13px;
   }
 }

@@ -2,197 +2,145 @@
 
 ## ✅ Status: COMPLETE & RUNNING
 
-Your modern React portfolio website has been successfully created and is currently running!
+Your modern **Next.js** portfolio (UI + email API) is ready!
 
-### 🚀 Access Your Portfolio
+### 🔗 Access Your Portfolio
 
-**Development URL:** http://localhost:5174
+**Development URL:** http://localhost:3000
 
-The site is currently running in development mode with hot reload enabled.
+Run `npm run dev` inside `portfolio-site/` and Next.js will spin up hot reload plus the `/api/contact` route locally.
 
 ---
 
-## 📋 What's Included
+## ✨ What's Included
 
-### ✨ Features Implemented
-- ✅ Professional blue color scheme (light & dark modes)
-- ✅ Dark/Light mode toggle with localStorage persistence
-- ✅ Smooth animations (fade-in, slide, scale)
-- ✅ Fully responsive design (mobile-first)
-- ✅ Interactive project showcase with expandable details
-- ✅ Skills organized by categories with emojis
-- ✅ Experience timeline
-- ✅ Contact form with email integration
-- ✅ Sticky header with smooth navigation
-- ✅ Beautiful footer
+- 🎨 Professional blue theme with light/dark modes
+- 🌙 Theme toggle persisted with `localStorage`
+- 🎬 Smooth animations (fade, slide, scale)
+- 📱 Fully responsive layout
+- 🧩 Interactive project gallery
+- 🧠 Skills visualized by category
+- 🏢 Experience timeline
+- 📬 Contact form powered by an API route + Nodemailer
+- 📌 Sticky navigation + smooth scrolling
+- 🦶 Crafted footer
 
-### 📁 Project Structure
+### 🗂️ Project Structure
 ```
 portfolio-site/
 ├── src/
-│   ├── components/          # 7 React components with CSS modules
-│   ├── context/            # Theme provider (dark/light mode)
-│   ├── data/               # Portfolio data (projects, skills, experience)
-│   ├── types/              # TypeScript interfaces
-│   ├── styles/             # Global styles with CSS variables
-│   └── App.tsx             # Main component
+│   ├── app/
+│   │   ├── api/contact/route.ts   # Serverless contact endpoint
+│   │   ├── layout.tsx             # Root layout + ThemeProvider
+│   │   └── page.tsx               # Page assembling all sections
+│   ├── components/                # React components with CSS modules
+│   ├── context/                   # Theme provider / hook
+│   ├── data/                      # Projects, skills, experience
+│   ├── services/                  # Contact form helper
+│   └── types/                     # TypeScript interfaces
+├── next.config.mjs
 ├── package.json
-├── vite.config.ts
-└── tsconfig.json
+└── README.md
 ```
 
 ---
 
-## 🎨 Current Content
+## 📦 Current Content
 
-### Projects Showcased (Top 3)
-1. **ASTRO INDU** - Astrology consultation platform with Twilio integration
-2. **Solar Engineering Platform** - Interactive design tool with PixiJS
-3. **Insurance Aggregator** - Multi-provider insurance comparison
-
-### Skills Organized By Category
-- Frontend (React, TypeScript, Material UI, etc.)
-- Backend (Python, Django, Node.js)
-- Databases (MySQL, PostgreSQL, Redis)
-- Tools & DevOps (Git, Docker, CI/CD)
-- Testing (Jest, React Testing Library)
-- APIs & Services (Stripe, Twilio, Firebase)
-
-### Contact Information
-- Email: srinuduggempudi26@gmail.com
-- Phone: +91 9391339072
-- Location: Hyderabad, India
+- **Projects:** Astro Indu, Solar Engineering Platform, Insurance Aggregator
+- **Skills:** Frontend, Backend, Databases, Tools & DevOps, Testing, APIs & Services
+- **Contact:** Email + phone + location blocks ready to customize
 
 ---
 
-## 🔧 How to Customize
+## 🛠️ How to Customize
 
-### 1. Update Your Information
-**File:** `src/data/portfolio.ts`
-- Edit project details (title, description, technologies)
-- Update skills and categories
-- Modify experience entries
+| Update | File |
+| --- | --- |
+| Projects, skills, experience | `src/data/portfolio.ts` |
+| Global colors/variables | `src/app/globals.css` |
+| Hero content | `src/components/Hero.tsx` |
+| Contact details | `src/components/Hero.tsx`, `src/components/Contact.tsx` |
 
-### 2. Change Colors
-**File:** `src/styles/globals.css`
-- Modify `--color-primary`, `--color-accent`, etc.
-- Apply to both light and dark themes
-
-### 3. Update Hero Section
-**File:** `src/components/Hero.tsx`
-- Title and subtitle
-- Description text
-- CTA buttons
-
-### 4. Modify Contact Details
-**Files:** `src/components/Hero.tsx`, `src/components/Contact.tsx`
-- Phone number
-- Email address
-- Location
+Tips:
+- Swap color tokens (`--color-primary`, etc.) for instant theming
+- Replace emoji placeholders (??) with icons or SVGs as needed
 
 ---
 
-## 📦 Build & Deploy
+## 🚀 Build & Deploy
 
-### Build for Production
+### Build for production
 ```bash
 cd portfolio-site
 npm run build
 ```
-Creates optimized `dist/` folder ready for deployment.
+Outputs optimized assets into `.next/`. Serve locally via `npm run start`.
 
-### Deployment Options
+### Deploy to Vercel (recommended)
+1. Install the CLI: `npm install -g vercel`
+2. From `portfolio-site/`, run `vercel link` once, then `vercel env pull`.
+3. Deploy: `vercel --prod`
 
-**Option 1: Vercel (Easiest)**
-```bash
-npm install -g vercel
-vercel
-```
+Or let the included GitHub Action (`.github/workflows/deploy.yml`) deploy using the Vercel CLI. Provide the secrets:
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
 
-**Option 2: Netlify**
-```bash
-npm install -g netlify-cli
-netlify deploy --prod --dir=dist
-```
+### Other hosts?
 
-**Option 3: GitHub Pages / Traditional Hosting**
-- Upload `dist/` folder to your hosting
-- Configure as single-page application
+Next.js can also deploy to platforms such as Netlify or AWS Amplify using their Next adapters. Just be sure your SMTP env variables are configured there.
 
 ---
 
-## 📱 Testing
+## 🧪 Testing checklist
 
-The portfolio is fully responsive:
-- ✅ Desktop (1200px+)
-- ✅ Tablet (768px - 1199px)
-- ✅ Mobile (320px - 767px)
-
-Open DevTools and test with device emulation.
+- ✅ Desktop / Tablet / Mobile viewports (DevTools device emulation)
+- ✅ Theme toggle works and persists across reloads
+- ✅ Contact form validates required fields
+- ✅ `/api/contact` logs success/failure in the terminal (fill `.env` first)
 
 ---
 
-## 🎯 Next Steps
+## 📋 Next Steps
 
-### Immediate (Optional but Recommended)
-1. [ ] Update project descriptions with your actual projects
-2. [ ] Customize color scheme if desired
-3. [ ] Add more projects to showcase
-4. [ ] Test dark/light mode toggle
+### Content
+1. Update all project descriptions + metrics
+2. Add/remove skills to match your stack
+3. Adjust hero + CTA copy to match your tone
 
-### Before Deployment
-1. [ ] Update all contact information
-2. [ ] Add social media links (optional)
-3. [ ] Test form submission
-4. [ ] Verify all links work
-5. [ ] Test on mobile device
+### Contact / API
+1. Create `.env` from `.env.example`
+2. Fill SMTP credentials (App Password for Gmail is recommended)
+3. Test the form locally – watch the terminal for confirmation
 
 ### Deployment
-1. [ ] Build: `npm run build`
-2. [ ] Test build: `npm run preview`
-3. [ ] Deploy to hosting (Vercel, Netlify, etc.)
-4. [ ] Set up custom domain
-5. [ ] Configure analytics (optional)
-
----
-
-## 📚 File Locations for Quick Edits
-
-| What to Edit | File Location |
-|---|---|
-| Projects data | `src/data/portfolio.ts` |
-| Skills list | `src/data/portfolio.ts` |
-| Experience | `src/data/portfolio.ts` |
-| Colors | `src/styles/globals.css` |
-| Hero content | `src/components/Hero.tsx` |
-| Contact info | `src/components/Contact.tsx` |
+1. Configure Vercel project + env vars
+2. Push to `main` (workflow will build + deploy)
+3. Attach a custom domain inside Vercel (optional)
 
 ---
 
 ## 💡 Tips
 
-- **Theme Testing:** Click the 🌙/☀️ button in top-right to toggle dark mode
-- **Smooth Scrolling:** Click navigation items to smooth scroll to sections
-- **Responsive Testing:** Resize browser window or use DevTools device emulation
-- **Form Testing:** Fill contact form (opens email client with prefilled data)
+- **Theme toggle:** top-right button switches light/dark
+- **Smooth scroll:** header links jump to matching sections
+- **Animations:** check `.module.css` files for timing tweaks
+- **Emails:** the API route sends one email to you (`CONTACT_TARGET_EMAIL`) and a confirmation to the sender
 
 ---
 
-## 📞 Support Resources
+## 📚 Helpful Links
 
-- Vite Docs: https://vitejs.dev
-- React Docs: https://react.dev
-- TypeScript Docs: https://www.typescriptlang.org
-- CSS Modules: https://github.com/css-modules/css-modules
+- Next.js Docs: https://nextjs.org/docs
+- Nodemailer Docs: https://nodemailer.com/about/
+- Vercel CLI: https://vercel.com/docs/cli
+- TypeScript: https://www.typescriptlang.org/docs/
 
 ---
 
 ## 🎉 You're All Set!
 
-Your portfolio website is ready to go! 
-
-**Next:** Visit http://localhost:5174 and start customizing.
-
-When ready to deploy, follow the deployment instructions above.
+Visit http://localhost:3000, make it yours, then ship it to Vercel whenever you're ready.
 
 Good luck! 🚀

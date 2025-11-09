@@ -1,4 +1,4 @@
-import type { Project, Skill, Experience } from '../types';
+import type { Project, Skill, Experience } from '@/types';
 
 export const projects: Project[] = [
   {
@@ -28,6 +28,7 @@ export const projects: Project[] = [
       'Built horoscope modules using VedicAstroAPI for Kundli generation',
     ],
     image: 'astro-indu',
+    live: 'https://astroindu.com/',
   },
   {
     id: 2,
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     description: 'Interactive web app for rooftop solar panel design with real-time calculations',
     longDescription:
       'This web application supports solar engineers in designing rooftop layouts using map-based interfaces and drawing tools. Users can place, rotate, and calculate panel arrangements in real time, and generate engineering documents like BoM, installation drawings, and racking guides.',
-    role: 'React Developer',
+    role: 'Full Stack Developer',
     technologies: ['React.js', 'PixiJS', 'Google Maps API', 'Bing Maps API', 'Django', 'Jest', 'React Testing Library'],
     highlights: [
       'Built interactive drawing tools with React and PixiJS for real-time panel placement',
@@ -46,6 +47,7 @@ export const projects: Project[] = [
       'Contributed to feature planning and participated in Agile ceremonies',
     ],
     image: 'solar-engineering',
+    live: 'https://design.unirac.com/',
   },
   {
     id: 3,
@@ -53,7 +55,7 @@ export const projects: Project[] = [
     description: 'Multi-provider insurance comparison with real-time quotes and policy purchase',
     longDescription:
       'A web-based aggregator allowing users to compare insurance products, receive real-time premium quotes, and purchase policies online. The system fetches offers from multiple insurance providers via APIs, filters options, and guides users through purchase and payment steps.',
-    role: 'Full Stack Developer',
+    role: 'React Developer',
     technologies: ['React.js', 'Redux', 'SCSS', 'Node.js', 'REST APIs', 'Payment Integration'],
     highlights: [
       'Developed dynamic and filterable UI interfaces using React and Redux',
@@ -63,6 +65,23 @@ export const projects: Project[] = [
       'Ensured accessibility and responsive design on mobile and desktop',
     ],
     image: 'insurance-aggregator',
+  },
+  {
+    id: 4,
+    title: 'EdPlatform (Demo)',
+    description: 'Modern education platform demo with course catalog, lessons, and clean UX',
+    longDescription:
+      'EdPlatform is a demo e-learning experience showcasing a responsive course catalog, lesson detail views, and clear progress cues. It focuses on simple, accessible UI patterns, fast navigation, and a modular structure that can be extended into a full LMS.',
+    role: 'Frontend Developer',
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    highlights: [
+      'Responsive course catalog and lesson pages with consistent navigation',
+      'Accessible interactions and focus states for keyboard users',
+      'Lightweight build optimized for GitHub Pages static hosting',
+      'Clean component structure ready to evolve into a full LMS',
+    ],
+    image: 'edplatform',
+    live: 'https://srinu520.github.io/edplatform/',
   },
 ];
 

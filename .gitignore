@@ -1,2 +1,7 @@
 server/node_modules/
 portfolio-site/node_modules/
+portfolio-site/.next/
+portfolio-site/.vercel/
+portfolio-site/out/
+portfolio-site/.env
+portfolio-site/.env.local

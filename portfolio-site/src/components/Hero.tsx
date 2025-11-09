@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.badgeRow}>
-            <span className={styles.badge}>// Crafting delightful digital experiences</span>
+            <span className={styles.badge}>&#47;&#47; Crafting delightful digital experiences</span>
             <span className={styles.badgeStatus}>
               <span className={styles.pulseDot}></span>
               Open to collaborations
@@ -98,7 +98,7 @@ launchProduct({
           </div>
 
           <div className={styles.floatingBadge}>
-            <span className={styles.badgeIcon}>//</span>
+            <span className={styles.badgeIcon} aria-hidden="true">&#47;&#47;</span>
             <div>
               <strong>Performance-first mindset</strong>
               <span>Optimized CI/CD, automated QA, and measurable outcomes.</span>

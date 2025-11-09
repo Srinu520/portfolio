@@ -52,6 +52,15 @@ body {
   line-height: 1.6;
 }
 
+/* Make media elements responsive by default */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 a {
   color: var(--color-primary);
   text-decoration: none;

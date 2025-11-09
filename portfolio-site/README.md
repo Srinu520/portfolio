@@ -1,6 +1,6 @@
 # Portfolio Front-End
 
-React + TypeScript application bootstrapped with Vite. The app powers the public portfolio while delegating contact form delivery to the standalone Nodemailer API located in `server/`.
+Next.js + TypeScript application that powers Srinu's portfolio site and ships with a serverless `/api/contact` endpoint backed by Nodemailer. The intent is to deploy everything to Vercel so the UI and API live in a single project.
 
 ## Local development
 
@@ -10,50 +10,43 @@ npm install
 npm run dev
 ```
 
-The contact form posts to the URL defined in `VITE_CONTACT_API_URL`. During local development it defaults to `http://localhost:5000/api/contact`, so start the mailer API as well:
-
-```bash
-cd server
-npm install
-npm run dev
-```
+By default the contact form posts to `/api/contact`. Override `NEXT_PUBLIC_CONTACT_API_URL` if you want to point at a different environment.
 
 ## Environment variables
 
+Copy `.env.example` to `.env` (or `.env.local`) and fill out the SMTP credentials that Vercel/Next will use at runtime.
+
 | Variable | Purpose | Default |
 | --- | --- | --- |
-| `VITE_CONTACT_API_URL` | Fully-qualified URL for the mailer API. | `http://localhost:5000/api/contact` |
+| `NEXT_PUBLIC_CONTACT_API_URL` | Client-side endpoint for the contact form | `/api/contact` |
+| `SMTP_HOST` | SMTP host for Nodemailer | `smtp.gmail.com` |
+| `SMTP_PORT` | SMTP port | `465` |
+| `SMTP_SECURE` | Whether the SMTP connection should use TLS | `true` |
+| `SMTP_USER` / `SMTP_PASS` | Credentials for the SMTP account | — |
+| `FROM_EMAIL` | Address that appears in the `from` header (falls back to `SMTP_USER`) | — |
+| `CONTACT_TARGET_EMAIL` | Destination inbox for incoming enquiries (defaults to `FROM_EMAIL`) | — |
+| `ACK_SUBJECT` / `ACK_MESSAGE` | Custom confirmation email copy | Friendly defaults |
 
-Create a `.env` file (copy from `.env.example`) to override values. Remember to restart `npm run dev` whenever you change `.env`.
+Restart `npm run dev` after editing env files so Next.js picks up the changes.
 
 ## Production build
 
 ```bash
-cd portfolio-site
 npm run build
+npm run start          # serves the built app
 ```
 
-Static assets are emitted to `dist/`. Serve them with any static host. Ensure `VITE_CONTACT_API_URL` points at a publicly reachable instance of the Nodemailer service (GitHub Pages cannot host server-side code).
+The build artifacts live in `.next/` and are ready for Vercel’s serverless runtime.
 
-## Deploying to GitHub Pages
+## Deploying to Vercel
 
-This repository ships with a workflow at `.github/workflows/deploy.yml` that builds the front-end and publishes it to GitHub Pages.
+The repository already contains `.github/workflows/deploy.yml`, which installs dependencies, runs `npm run build`, and uses the Vercel CLI to deploy a production build. Add the following repository secrets before enabling it:
 
-1. Set the repository secret `VITE_CONTACT_API_URL` to the production API endpoint (e.g. `https://your-mailer-host/api/contact`).
-2. Commit and push to the `main` branch. The workflow:
-   - installs dependencies from `portfolio-site/package-lock.json`
-   - runs `npm run build`
-   - uploads `dist/` to the GitHub Pages artifact
-3. After the first successful run, enable GitHub Pages for the repository (Settings → Pages) and select **GitHub Actions** as the source.
+- `VERCEL_TOKEN` – personal token generated from https://vercel.com/account/tokens
+- `VERCEL_ORG_ID` – your Vercel org or personal account ID
+- `VERCEL_PROJECT_ID` – the project ID inside Vercel
 
-### Base path handling
-
-The Vite `base` option is controlled by the `BASE_PATH` environment variable. Locally it defaults to `/`. The GitHub Pages workflow sets it to:
-
-- `/` for repositories named `username.github.io`
-- `/<repository-name>/` for any other repository
-
-If you deploy manually, ensure you export `BASE_PATH` before running `npm run build`.
+Alternatively you can rely on Vercel’s GitHub integration: import the repo, set the same environment variables inside the Vercel dashboard, and Vercel will build on every push to `main`.
 
 ## Linting
 
@@ -63,6 +56,9 @@ npm run lint
 
 ## Folder structure
 
-- `src/` – application code
-- `public/` – static assets copied as-is
-- `dist/` – generated at build time
+- `src/app` – App Router entry point, layout, page, and API routes
+- `src/components` – UI sections with CSS modules
+- `src/context` – Theme provider + hook
+- `src/services` – Browser utilities (contact form submission)
+- `src/data` & `src/types` – Portfolio content and TypeScript interfaces
+- `public` – Static assets copied as-is by Next.js

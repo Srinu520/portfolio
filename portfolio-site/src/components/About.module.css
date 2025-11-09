@@ -227,6 +227,34 @@
   letter-spacing: 1px;
 }
 
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 36px;
+    margin-bottom: 48px;
+  }
+
+  .content {
+    gap: 40px;
+  }
+
+  .intro {
+    font-size: 15px;
+  }
+
+  .highlight {
+    padding: 24px;
+  }
+
+  .stats {
+    gap: 24px;
+  }
+
+  .statNumber {
+    font-size: 32px;
+  }
+}
+
 @keyframes driftCombined {
   0% {
     transform: translate(0, 0) scale(1);
@@ -308,5 +336,37 @@
 
   .statNumber {
     font-size: 28px;
+  }
+}
+
+/* Small phone adjustments */
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .intro {
+    font-size: 14px;
+  }
+
+  .highlight {
+    padding: 20px;
+  }
+
+  .experienceItem {
+    padding: 16px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat {
+    padding: 20px;
+  }
+
+  .statNumber {
+    font-size: 24px;
   }
 }

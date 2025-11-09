@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
         <div className={styles.bottom}>
           <p>&copy; {currentYear} Srinu Duggempudi. All rights reserved.</p>
           <p className={styles.credit}>
-            Built with <span className={styles.heart}>❤️</span> using React + TypeScript + Vite
+            Built with <span className={styles.heart}>❤️</span> using Next.js + TypeScript
           </p>
         </div>
       </div>

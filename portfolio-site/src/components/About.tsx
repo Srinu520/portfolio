@@ -1,5 +1,5 @@
 import React from 'react';
-import { experience } from '../data/portfolio';
+import { experience } from '@/data/portfolio';
 import styles from './About.module.css';
 
 const About: React.FC = () => {

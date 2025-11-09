@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { skills } from '../data/portfolio';
+'use client';
+
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { skills } from '@/data/portfolio';
 import styles from './Skills.module.css';
 
 interface NodePosition {
@@ -7,9 +9,82 @@ interface NodePosition {
   y: number;
 }
 
+const VIEWBOX_SIZE = 1000;
+// Keep items within the viewBox bounds (in viewBox units)
+const EDGE_MARGIN = 20;
+
+const roundValue = (value: number, precision = 4) => {
+  const multiplier = 10 ** precision;
+  return Math.round(value * multiplier) / multiplier;
+};
+
+const toPercent = (value: number) => `${roundValue((value / VIEWBOX_SIZE) * 100, 4)}%`;
+
 const Skills: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+
+  // Track container size to make layout responsive across pages and devices
+  useEffect(() => {
+    if (!containerRef.current || typeof window === 'undefined') return;
+    const ro = new ResizeObserver(entries => {
+      const cr = entries[0]?.contentRect;
+      if (cr) setContainerWidth(cr.width);
+    });
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  // Compute radii and spacing based on available width
+  const layout = useMemo(() => {
+    const w = containerWidth || 1000; // default if unknown
+    let categoryRadius = 300;
+    let skillRadiusDefault = 120;
+    let skillRadiusHover = 170;
+    let minArcLenDefault = 80;
+    let minArcLenHover = 95;
+    let useArc = false;
+    let arcSpanDefault = Math.PI; // 180°
+    let arcSpanHover = Math.PI * 1.25; // ~225°
+
+    if (w < 420) {
+      // Phones: keep full circle around parent (no outward-only arc)
+      categoryRadius = 240;
+      skillRadiusDefault = 95;
+      skillRadiusHover = 130;
+      minArcLenDefault = 70;
+      minArcLenHover = 85;
+      useArc = false; // full ring on mobile as requested
+    } else if (w < 640) {
+      // Large phones / small phablets
+      categoryRadius = 260;
+      skillRadiusDefault = 105;
+      skillRadiusHover = 140;
+      minArcLenDefault = 75;
+      minArcLenHover = 90;
+      useArc = false;
+    } else if (w < 840) {
+      categoryRadius = 270;
+      skillRadiusDefault = 100;
+      skillRadiusHover = 150;
+    } else if (w < 1080) {
+      categoryRadius = 290;
+      skillRadiusDefault = 110;
+      skillRadiusHover = 160;
+    }
+
+    return {
+      categoryRadius,
+      skillRadiusDefault,
+      skillRadiusHover,
+      minArcLenDefault,
+      minArcLenHover,
+      useArc,
+      arcSpanDefault,
+      arcSpanHover,
+    } as const;
+  }, [containerWidth]);
 
   const categoryIcons: Record<string, string> = {
     'Frontend': '⚛️',
@@ -24,24 +99,63 @@ const Skills: React.FC = () => {
   const getCategoryPosition = (index: number): NodePosition => {
     const centerX = 500;
     const centerY = 500;
-    const categoryRadius = 200;
+    const categoryRadius = layout.categoryRadius; // responsive radius based on container
     const angle = (index / skills.length) * Math.PI * 2;
     
     return {
-      x: centerX + Math.cos(angle) * categoryRadius,
-      y: centerY + Math.sin(angle) * categoryRadius,
+      x: roundValue(centerX + Math.cos(angle) * categoryRadius),
+      y: roundValue(centerY + Math.sin(angle) * categoryRadius),
     };
   };
 
   // Calculate positions for skill items around a category
-  const getSkillPosition = (categoryIndex: number, itemIndex: number, totalItems: number, isHovered: boolean = false): NodePosition => {
+  const getSkillPosition = (
+    categoryIndex: number,
+    itemIndex: number,
+    totalItems: number,
+    isHovered: boolean = false
+  ): NodePosition => {
     const categoryPos = getCategoryPosition(categoryIndex);
-    const skillRadius = isHovered ? 140 : 80;
-    const angle = (itemIndex / totalItems) * Math.PI * 2;
-    
+    const effectiveItems = Math.max(totalItems, 1);
+
+    const baseRadius = isHovered ? layout.skillRadiusHover : layout.skillRadiusDefault;
+    const minArcLen = isHovered ? layout.minArcLenHover : layout.minArcLenDefault;
+
+    // Max radius allowed so the circle around the category stays inside the viewBox
+    const maxSkillRadius = Math.max(
+      40,
+      Math.min(
+        categoryPos.x - EDGE_MARGIN,
+        categoryPos.y - EDGE_MARGIN,
+        VIEWBOX_SIZE - EDGE_MARGIN - categoryPos.x,
+        VIEWBOX_SIZE - EDGE_MARGIN - categoryPos.y
+      )
+    );
+
+    let radius: number;
+    let angle: number;
+    if (layout.useArc) {
+      // Outward arc layout for compact screens
+      const span = isHovered ? layout.arcSpanHover : layout.arcSpanDefault;
+      const requiredRadius = (minArcLen * effectiveItems) / span;
+      radius = Math.min(Math.max(baseRadius, requiredRadius), maxSkillRadius);
+
+      const outwardAngle = (categoryIndex / skills.length) * Math.PI * 2;
+      const start = outwardAngle - span / 2;
+      const t = effectiveItems === 1 ? 0.5 : itemIndex / (effectiveItems - 1);
+      angle = start + t * span;
+    } else {
+      // Full circle layout
+      const requiredRadius = (minArcLen * effectiveItems) / (2 * Math.PI);
+      radius = Math.min(Math.max(baseRadius, requiredRadius), maxSkillRadius);
+      const startAngle = (categoryIndex / skills.length) * Math.PI * 2;
+      const step = (Math.PI * 2) / effectiveItems;
+      angle = startAngle + itemIndex * step;
+    }
+
     return {
-      x: categoryPos.x + Math.cos(angle) * skillRadius,
-      y: categoryPos.y + Math.sin(angle) * skillRadius,
+      x: roundValue(categoryPos.x + Math.cos(angle) * radius),
+      y: roundValue(categoryPos.y + Math.sin(angle) * radius),
     };
   };
 
@@ -74,7 +188,12 @@ const Skills: React.FC = () => {
 
         <div className={styles.networkContainer} ref={containerRef}>
           {/* SVG Background for connections */}
-          <svg className={styles.connectionsSvg} viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+          <svg
+            className={styles.connectionsSvg}
+            viewBox="0 0 1000 1000"
+            preserveAspectRatio="none"
+            shapeRendering="geometricPrecision"
+          >
             {/* Draw lines connecting skills to categories */}
             {skills.map((skillGroup) => {
               const categoryIndex = skills.findIndex(s => s.category === skillGroup.category);
@@ -92,6 +211,7 @@ const Skills: React.FC = () => {
                     x2={itemPos.x}
                     y2={itemPos.y}
                     className={`${styles.connectionLine} ${isHovered ? styles.highlighted : ''}`}
+                    vectorEffect="non-scaling-stroke"
                     style={{
                       opacity: !hoveredCategory || isHovered ? 1 : 0.08,
                     }}
@@ -111,11 +231,27 @@ const Skills: React.FC = () => {
                 key={skillGroup.category}
                 className={styles.categoryNode}
                 style={{
-                  left: `${(categoryPos.x / 1000) * 100}%`,
-                  top: `${(categoryPos.y / 1000) * 100}%`,
+                  left: toPercent(categoryPos.x),
+                  top: toPercent(categoryPos.y),
                 }}
                 onMouseEnter={() => setHoveredCategory(skillGroup.category)}
                 onMouseLeave={() => setHoveredCategory(null)}
+                role="button"
+                tabIndex={0}
+                aria-pressed={isHovered}
+                onClick={() =>
+                  setHoveredCategory((prev) =>
+                    prev === skillGroup.category ? null : skillGroup.category
+                  )
+                }
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setHoveredCategory((prev) =>
+                      prev === skillGroup.category ? null : skillGroup.category
+                    );
+                  }
+                }}
               >
                 <div className={`${styles.categoryDot} ${isHovered ? styles.active : ''}`}>
                   <span className={styles.categoryEmoji}>{categoryIcons[skillGroup.category]}</span>
@@ -139,8 +275,8 @@ const Skills: React.FC = () => {
                   key={skillId}
                   className={`${styles.skillNode} ${isHovered ? styles.highlighted : ''}`}
                   style={{
-                    left: `${(skillPos.x / 1000) * 100}%`,
-                    top: `${(skillPos.y / 1000) * 100}%`,
+                    left: toPercent(skillPos.x),
+                    top: toPercent(skillPos.y),
                     opacity: !hoveredCategory ? 1 : isHovered ? 1 : 0.3,
                   }}
                 >
@@ -151,7 +287,7 @@ const Skills: React.FC = () => {
           })}
         </div>
 
-        <p className={styles.hint}>💡 Tip: Hover over skill categories for highlights</p>
+        <p className={styles.hint}>💡 Tip: Tap or hover over categories for highlights</p>
       </div>
     </section>
   );

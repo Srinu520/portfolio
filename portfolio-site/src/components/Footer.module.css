@@ -94,6 +94,22 @@
   margin-bottom: 0 !important;
 }
 
+@media (max-width: 1024px) {
+  .content {
+    gap: 32px;
+  }
+
+  .section h3 {
+    font-size: 16px;
+  }
+
+  .section h4,
+  .section a,
+  .section p {
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   .footer {
     padding: 40px 20px 20px;
@@ -106,5 +122,15 @@
 
   .bottom p {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    gap: 16px;
+  }
+
+  .bottom p {
+    font-size: 11px;
   }
 }

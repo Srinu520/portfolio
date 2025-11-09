@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import { submitContactForm } from '../services/contact';
+import { submitContactForm } from '@/services/contact';
 import styles from './Contact.module.css';
 
 const initialFormState = {
