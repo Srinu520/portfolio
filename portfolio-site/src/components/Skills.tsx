@@ -45,8 +45,8 @@ const Skills: React.FC = () => {
     let minArcLenDefault = 80;
     let minArcLenHover = 95;
     let useArc = false;
-    let arcSpanDefault = Math.PI; // 180°
-    let arcSpanHover = Math.PI * 1.25; // ~225°
+    const arcSpanDefault = Math.PI; // 180°
+    const arcSpanHover = Math.PI * 1.25; // ~225°
 
     if (w < 420) {
       // Phones: keep full circle around parent (no outward-only arc)
