@@ -48,6 +48,12 @@ jobs:
           NEXT_TELEMETRY_DISABLED: '1'
         run: npm run build
 
+      - name: Add .nojekyll to enable _next assets
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: |
+          touch out/.nojekyll
+          echo "Using basePath='${NEXT_BASE_PATH}'" > out/build-info.txt
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -63,4 +69,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
