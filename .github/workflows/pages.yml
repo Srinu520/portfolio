@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+env:
+  PROJECT_DIR: portfolio-site
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ env.PROJECT_DIR }}/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: npm ci
+
+      - name: Build static export
+        working-directory: ${{ env.PROJECT_DIR }}
+        env:
+          # Toggle export mode in next.config.mjs
+          BUILD_FOR_PAGES: 'true'
+          # If this is a user/organization site (repo ends with .github.io), base path is ''
+          NEXT_BASE_PATH: ${{ contains(github.repository, '.github.io') && '' || format('/{0}', github.event.repository.name) }}
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.PROJECT_DIR }}/out
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
