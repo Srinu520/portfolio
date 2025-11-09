@@ -36,8 +36,15 @@ export default function TwitterImage() {
           }}
         />
 
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ fontSize: 72, fontWeight: 800, letterSpacing: -1 }}> {name} </div>
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div style={{ fontSize: 72, fontWeight: 800, letterSpacing: -1 }}>{name}</div>
           <div style={{ fontSize: 34, marginTop: 14, color: '#a8b2d1' }}>{tagline}</div>
         </div>
 
@@ -50,12 +57,9 @@ export default function TwitterImage() {
             color: '#8ea0c8',
             letterSpacing: 0.5,
           }}
-        >
-          {domain}
-        </div>
+        >{domain}</div>
       </div>
     ),
     { width: size.width, height: size.height }
   );
 }
-

@@ -114,9 +114,21 @@ export const skills: Skill[] = [
 
 export const experience: Experience[] = [
   {
-    company: 'Unirac Limited',
+    company: 'Unirac Solar India Private Limited',
     position: 'Full Stack Developer',
-    period: 'Mar 2022 – Present',
+    period: 'Jul 2022 – Present',
+    description: 'Developed and maintained scalable web applications for solar engineering solutions.',
+  },
+  {
+    company: 'Freelance / Square Tech Inc',
+    position: 'Full Stack Developer',
+    period: 'Mar 2025 – Jul 2025',
+    description: 'Building custom web applications and solutions for clients using modern tech stacks.',
+  },
+  {
+    company: 'Unirac Solar India Private Limited',
+    position: 'Full Stack Developer',
+    period: 'Mar 2022 – Mar 2025',
     description: 'Developed and maintained scalable web applications for solar engineering solutions.',
   },
   // {

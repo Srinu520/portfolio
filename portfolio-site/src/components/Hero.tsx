@@ -1,7 +1,50 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './Hero.module.css';
 
 const Hero: React.FC = () => {
+  const roles = useMemo((): string[] => [
+    'Front End Developer',
+    'Full Stack Developer',
+    'Freelancer',
+  ], []);
+
+  const [displayText, setDisplayText] = useState('');
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const current = roles[roleIndex % roles.length];
+
+    const typingSpeed = 90;
+    const deletingSpeed = 45;
+    const endPause = 1400;
+    const startPause = 450;
+
+    if (!isDeleting && displayText === current) {
+      timeoutRef.current = setTimeout(() => setIsDeleting(true), endPause);
+      return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+    }
+
+    if (isDeleting && displayText === '') {
+      timeoutRef.current = setTimeout(() => {
+        setIsDeleting(false);
+        setRoleIndex((i) => (i + 1) % roles.length);
+      }, startPause);
+      return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      const nextText = isDeleting
+        ? current.slice(0, Math.max(0, displayText.length - 1))
+        : current.slice(0, displayText.length + 1);
+      setDisplayText(nextText);
+    }, isDeleting ? deletingSpeed : typingSpeed);
+
+    return () => timeoutRef.current && clearTimeout(timeoutRef.current);
+  }, [displayText, isDeleting, roleIndex, roles]);
+
   return (
     <section className={styles.hero} id="hero">
       <div className={styles.accentGlow}></div>
@@ -21,6 +64,10 @@ const Hero: React.FC = () => {
           <h1 className={styles.title}>
             Hi, I&apos;m <span className={styles.highlight}>Srinu Duggempudi</span>
           </h1>
+          <p className={styles.roles} aria-label="Professional roles">
+            <span className={styles.typewriter}>{displayText}</span>
+            <span className={styles.caret} aria-hidden="true"></span>
+          </p>
           <p className={styles.subtitle}>
             Full Stack Engineer blending <span>React</span>, <span>Django</span>, and cloud-native tooling to launch resilient products.
           </p>

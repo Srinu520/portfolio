@@ -128,6 +128,40 @@
   text-shadow: 0 8px 32px rgba(20, 88, 255, 0.35);
 }
 
+/* Rotating roles (typewriter) */
+.roles {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.typewriter {
+  background: linear-gradient(120deg, #6b9afd 0%, #78f8de 45%, #ff926b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.01em;
+}
+
+.caret {
+  width: 2px;
+  height: 1.2em;
+  background: currentColor;
+  display: inline-block;
+  transform: translateY(2px);
+  animation: caretBlink 1s steps(1, end) infinite;
+}
+
+@keyframes caretBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
 .subtitle {
   margin: 0;
   max-width: 600px;
