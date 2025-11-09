@@ -53,6 +53,7 @@ jobs:
         run: |
           touch out/.nojekyll
           echo "Using basePath='${NEXT_BASE_PATH}'" > out/build-info.txt
+          echo "srinud.com" > out/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
