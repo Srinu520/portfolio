@@ -44,12 +44,17 @@ export const metadata: Metadata = {
     description:
       'Portfolio and contact hub for Srinu Duggempudi, a full stack engineer crafting resilient experiences with React, Next.js, and Django.',
     locale: 'en_US',
+    images: ['/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Srinu Duggempudi | Full Stack Developer',
     description:
       'Portfolio and contact hub for Srinu Duggempudi, a full stack engineer crafting resilient experiences with React, Next.js, and Django.',
+    images: ['/opengraph-image.png'],
+  },
+  verification: {
+    google: 'OTHaZLvKYblKJxTkiHaa8eVIQ44SuiAsmC2_lojnEKs',
   },
   robots: {
     index: true,
