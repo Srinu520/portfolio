@@ -39,11 +39,12 @@ const Skills: React.FC = () => {
   // Compute radii and spacing based on available width
   const layout = useMemo(() => {
     const w = containerWidth || 1000; // default if unknown
-    let categoryRadius = 300;
-    let skillRadiusDefault = 120;
-    let skillRadiusHover = 170;
-    let minArcLenDefault = 80;
-    let minArcLenHover = 95;
+    // Defaults apply to larger screens; smaller widths override below
+    let categoryRadius = 260;
+    let skillRadiusDefault = 100;
+    let skillRadiusHover = 145;
+    let minArcLenDefault = 70;
+    let minArcLenHover = 85;
     let useArc = false;
     const arcSpanDefault = Math.PI; // 180°
     const arcSpanHover = Math.PI * 1.25; // ~225°
@@ -186,6 +187,26 @@ const Skills: React.FC = () => {
         <h2 className={styles.title}>Technical Skills</h2>
         <p className={styles.subtitle}>Explore all available technologies</p>
 
+        {/* Mobile layout: stacked cards with chips */}
+        <div className={styles.mobileLayout}>
+          {skills.map((skillGroup) => (
+            <article key={skillGroup.category} className={styles.mobileCard}>
+              <header className={styles.mobileCardHeader}>
+                <span className={styles.mobileIcon}>{categoryIcons[skillGroup.category]}</span>
+                <h3 className={styles.mobileCategory}>{skillGroup.category}</h3>
+              </header>
+              <div className={styles.mobileSkills}>
+                {skillGroup.items.map((item) => (
+                  <span key={`${skillGroup.category}-${item}`} className={styles.mobileSkillChip}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Desktop / large-screen layout: radial network */}
         <div className={styles.networkContainer} ref={containerRef}>
           {/* SVG Background for connections */}
           <svg

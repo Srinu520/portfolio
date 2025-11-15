@@ -117,6 +117,76 @@
   opacity: 0.8;
 }
 
+/* Mobile stacked layout (hidden by default, shown via media queries) */
+.mobileLayout {
+  display: none;
+}
+
+.mobileCard {
+  background: var(--color-bg-secondary);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 18px 16px 14px;
+  box-shadow: 0 10px 24px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.mobileCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobileIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: 0 0 18px rgba(0, 102, 204, 0.4);
+}
+
+.mobileCategory {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.mobileSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mobileSkillChip {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .mobileCard {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .mobileSkillChip {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
 /* Network Container */
 .networkContainer {
   position: relative;
@@ -460,35 +530,15 @@
   }
 
   .networkContainer {
-    aspect-ratio: 1 / 1;
-    min-height: 520px;
+    display: none;
   }
 
-  .categoryDot {
-    width: 68px;
-    height: 68px;
-  }
-
-  .categoryEmoji {
-    font-size: 28px;
-  }
-
-  .categoryLabel {
-    font-size: 12px;
-    gap: 10px;
-  }
-
-  .categoryNode {
-    gap: 12px;
-  }
-
-  .skillLabel {
-    font-size: 11px;
-  }
-
-  .skillNode {
-    padding: 6px 12px;
-    border-radius: 18px;
+  .mobileLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 720px;
+    margin: 0 auto 32px;
   }
 }
 
@@ -510,34 +560,20 @@
     font-size: 12px;
   }
 
-  .networkContainer {
-    aspect-ratio: 1;
-    max-width: 100%;
+  .mobileLayout {
+    gap: 14px;
   }
 
-  .categoryDot {
-    width: 60px;
-    height: 60px;
+  .mobileCard {
+    padding: 16px 14px 12px;
   }
 
-  .categoryEmoji {
-    font-size: 22px;
+  .mobileCategory {
+    font-size: 14px;
   }
 
-  .categoryLabel {
+  .mobileSkillChip {
     font-size: 11px;
-  }
-
-  .categoryNode {
-    gap: 10px;
-  }
-
-  .skillLabel {
-    font-size: 10px;
-  }
-
-  .skillNode {
-    padding: 5px 10px;
-    font-size: 10px;
+    padding: 5px 9px;
   }
 }
