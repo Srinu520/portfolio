@@ -1,13 +1,20 @@
-import type { Project, Skill, Experience } from '@/types';
+import type { Project } from '@/types';
 
 export const projects: Project[] = [
   {
     id: 1,
     title: 'ASTRO INDU',
-    description: 'Real-time astrology consultation platform with voice calls and horoscope tools',
+    description: 'A paid consultation platform for live expert sessions, wallet billing, and horoscope tools.',
     longDescription:
       'ASTRO INDU is a real-time astrology consultation web platform that connects users with astrologers via voice calls, chat, and horoscope tools. The system allows astrologers to manage availability, receive scheduled or instant session requests, and perform Vedic analysis using integrated APIs.',
-    role: 'Full Stack Developer',
+    clientIndustry: 'Astrological Services',
+    problem:
+      'The business needed to turn expert availability, paid calls, wallet balances, and horoscope calculations into one reliable customer experience.',
+    solution:
+      'I built a real-time consultation platform with React dashboards, Django services, Twilio calling, Stripe payments, WebSockets, and automated session handling.',
+    result:
+      'Reduced operational friction around paid sessions, improved user retention loops, and gave the business a direct channel for monetized expert access.',
+    role: 'Lead Engineer',
     technologies: [
       'React.js',
       'Redux Rematch',
@@ -33,10 +40,17 @@ export const projects: Project[] = [
   {
     id: 2,
     title: 'Solar Engineering Platform',
-    description: 'Interactive web app for rooftop solar panel design with real-time calculations',
+    description: 'An engineering workflow tool for rooftop solar design, calculations, and document generation.',
     longDescription:
       'This web application supports solar engineers in designing rooftop layouts using map-based interfaces and drawing tools. Users can place, rotate, and calculate panel arrangements in real time, and generate engineering documents like BoM, installation drawings, and racking guides.',
-    role: 'Full Stack Developer',
+    clientIndustry: 'Solar Engineering',
+    problem:
+      'Solar engineers needed a faster way to design rooftop layouts, calculate panel placement, and produce project documents without switching between disconnected tools.',
+    solution:
+      'I built an interactive design platform using React, PixiJS, map APIs, Django services, and export-ready document workflows for engineering teams.',
+    result:
+      'Accelerated reporting, reduced repeated design work, and helped engineering teams move from layout planning to installation-ready outputs faster.',
+    role: 'Lead Engineer',
     technologies: ['React.js', 'PixiJS', 'Google Maps API', 'Bing Maps API', 'Django', 'Jest', 'React Testing Library'],
     highlights: [
       'Built interactive drawing tools with React and PixiJS for real-time panel placement',
@@ -52,9 +66,16 @@ export const projects: Project[] = [
   {
     id: 3,
     title: 'Insurance Aggregator Platform',
-    description: 'Multi-provider insurance comparison with real-time quotes and policy purchase',
+    description: 'A comparison and purchase flow for quote-heavy insurance products.',
     longDescription:
       'A web-based aggregator allowing users to compare insurance products, receive real-time premium quotes, and purchase policies online. The system fetches offers from multiple insurance providers via APIs, filters options, and guides users through purchase and payment steps.',
+    clientIndustry: 'Insurance',
+    problem:
+      'Customers needed to compare provider quotes quickly, while the business needed fewer drop-offs during the policy selection and purchase flow.',
+    solution:
+      'I built dynamic React interfaces, API-backed quote filtering, purchase steps, and performance improvements for a smoother buying path.',
+    result:
+      'Created a clearer comparison experience, reduced waiting time in quote-heavy screens, and improved the path from browsing to policy purchase.',
     role: 'React Developer',
     technologies: ['React.js', 'Redux', 'SCSS', 'Node.js', 'REST APIs', 'Payment Integration'],
     highlights: [
@@ -69,9 +90,16 @@ export const projects: Project[] = [
   {
     id: 4,
     title: 'EdPlatform (Demo)',
-    description: 'Modern education platform demo with course catalog, lessons, and clean UX',
+    description: 'A focused product demo for course discovery, lesson browsing, and learning progress.',
     longDescription:
       'EdPlatform is a demo e-learning experience showcasing a responsive course catalog, lesson detail views, and clear progress cues. It focuses on simple, accessible UI patterns, fast navigation, and a modular structure that can be extended into a full LMS.',
+    clientIndustry: 'Education',
+    problem:
+      'Learning products often lose users when course discovery and lesson navigation feel cluttered or slow.',
+    solution:
+      'I built a lightweight education platform demo with responsive catalog screens, lesson pages, and accessible UI patterns.',
+    result:
+      'Delivered a clear product foundation that can be extended into a full LMS, marketplace, or internal training portal.',
     role: 'Frontend Developer',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     highlights: [
@@ -85,56 +113,3 @@ export const projects: Project[] = [
   },
 ];
 
-export const skills: Skill[] = [
-  {
-    category: 'Frontend',
-    items: ['React.js', 'JavaScript', 'TypeScript', 'Redux', 'React Hooks', 'Material UI', 'HTML5', 'CSS3', 'Bootstrap', 'SCSS'],
-  },
-  {
-    category: 'Backend',
-    items: ['Python', 'Django', 'Django REST Framework', 'Node.js', 'Express.js'],
-  },
-  {
-    category: 'Databases',
-    items: ['MySQL', 'PostgreSQL', 'Redis'],
-  },
-  {
-    category: 'Tools & DevOps',
-    items: ['Git', 'GitHub', 'Postman', 'Jira', 'VS Code', 'Bitbucket', 'Celery', 'Docker'],
-  },
-  {
-    category: 'Testing & Quality',
-    items: ['Jest', 'React Testing Library', 'Postman'],
-  },
-  {
-    category: 'APIs & Services',
-    items: ['RESTful APIs', 'JWT Auth', 'Firebase', 'Stripe', 'Twilio', 'WebSockets'],
-  },
-];
-
-export const experience: Experience[] = [
-  {
-    company: 'Unirac Solar India Private Limited',
-    position: 'Full Stack Developer',
-    period: 'Jul 2022 – Present',
-    description: 'Developed and maintained scalable web applications for solar engineering solutions.',
-  },
-  {
-    company: 'Freelance / Square Tech Inc',
-    position: 'Full Stack Developer',
-    period: 'Mar 2025 – Jul 2025',
-    description: 'Building custom web applications and solutions for clients using modern tech stacks.',
-  },
-  {
-    company: 'Unirac Solar India Private Limited',
-    position: 'Full Stack Developer',
-    period: 'Mar 2022 – Mar 2025',
-    description: 'Developed and maintained scalable web applications for solar engineering solutions.',
-  },
-  // {
-  //   company: 'Aesthetic IT Soft, Hyderabad',
-  //   position: 'React & Backend Developer',
-  //   period: 'Feb 2020 – Mar 2022',
-  //   description: 'Built responsive UI components and backend APIs for various client projects.',
-  // },
-];

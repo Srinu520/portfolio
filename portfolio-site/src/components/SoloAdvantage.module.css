@@ -1,0 +1,83 @@
+.soloAdvantage {
+  padding: clamp(72px, 8vw, 106px) clamp(20px, 5vw, 72px);
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.container {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: clamp(34px, 5vw, 72px);
+  align-items: center;
+}
+
+.copy {
+  max-width: 780px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: 14px;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.copy h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.copy p {
+  margin: 22px 0 0;
+  color: var(--color-text-secondary);
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  line-height: 1.8;
+}
+
+.points {
+  display: grid;
+  gap: 12px;
+}
+
+.points div {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-secondary);
+}
+
+.points span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.points strong {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+@media (max-width: 860px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}

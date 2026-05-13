@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -48,43 +48,36 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className={styles.contact}>
-      <div className={styles.linesDecoration}>
-        <div className={styles.connectionLine}></div>
-        <div className={styles.connectionLine}></div>
-        <div className={styles.connectionLine}></div>
-        <div className={styles.connectionDot}></div>
-        <div className={styles.connectionDot}></div>
-      </div>
       <div className={styles.container}>
-        <h2 className={styles.title}>Let's Work Together</h2>
+        <h2 className={styles.title}>Let&apos;s scope your project.</h2>
         <p className={styles.subtitle}>
-          I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+          Share what is broken, what you need built, and what outcome matters. I will reply with the next practical step.
         </p>
 
         <div className={styles.content}>
           <div className={styles.contactInfo}>
             <div className={styles.infoCard}>
-              <div className={styles.infoIcon}>📧</div>
+              <div className={styles.infoIcon}>@</div>
               <h3>Email</h3>
-              <a href="mailto:srinu.fe@gmail.com">srinu.fe@gmail.com</a>
+              <a href="mailto:srinuduggempudi26@gmail.com">srinuduggempudi26@gmail.com</a>
             </div>
 
             <div className={styles.infoCard}>
-              <div className={styles.infoIcon}>📞</div>
+              <div className={styles.infoIcon}>#</div>
               <h3>Phone</h3>
               <a href="tel:+919391339072">+91 9391339072</a>
             </div>
 
             <div className={styles.infoCard}>
-              <div className={styles.infoIcon}>📍</div>
+              <div className={styles.infoIcon}>IN</div>
               <h3>Location</h3>
               <p>Hyderabad, India</p>
             </div>
 
             <div className={styles.infoCard}>
-              <div className={styles.infoIcon}>🕒</div>
+              <div className={styles.infoIcon}>24</div>
               <h3>Availability</h3>
-              <p>Available for freelance and full-time opportunities</p>
+              <p>Available for MVP builds, automation projects, and retainers</p>
             </div>
           </div>
 
@@ -118,17 +111,20 @@ const Contact: React.FC = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="subject">Subject *</label>
-              <input
-                type="text"
+              <label htmlFor="subject">What do you need help with? *</label>
+              <select
                 id="subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                placeholder="Project inquiry"
                 disabled={status === 'loading'}
-              />
+              >
+                <option value="">Select one</option>
+                <option value="Build an MVP">Build an MVP</option>
+                <option value="Automate workflows">Automate workflows</option>
+                <option value="Need ongoing tech support">Need ongoing tech support</option>
+              </select>
             </div>
 
             <div className={styles.formGroup}>
@@ -139,7 +135,7 @@ const Contact: React.FC = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                placeholder="Tell me about your project..."
+                placeholder="What is the business problem, current process, and target timeline?"
                 rows={5}
                 disabled={status === 'loading'}
               ></textarea>

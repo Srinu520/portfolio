@@ -61,16 +61,16 @@ export async function POST(request: NextRequest) {
 
   try {
     await transporter.sendMail({
-      from: `"Portfolio Contact" <${fromAddress}>`,
+      from: `"Project Inquiry" <${fromAddress}>`,
       to: targetEmail,
       replyTo: email,
-      subject: `[Portfolio] ${subject}`,
-      text: `New portfolio message from ${name} <${email}>.
+      subject: `[Project Inquiry] ${subject}`,
+      text: `New project inquiry from ${name} <${email}>.
 
 Subject: ${subject}
 
 ${message}`,
-      html: `<h2>New Portfolio Message</h2>
+      html: `<h2>New Project Inquiry</h2>
 <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
 <p><strong>Subject:</strong> ${subject}</p>
 <p><strong>Message:</strong></p>

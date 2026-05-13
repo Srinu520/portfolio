@@ -1,160 +1,77 @@
-"use client";
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React from 'react';
 import styles from './Hero.module.css';
 
 const Hero: React.FC = () => {
-  const roles = useMemo((): string[] => [
-    'Front End Developer',
-    'Full Stack Developer',
-    'Freelancer',
-  ], []);
-
-  const [displayText, setDisplayText] = useState('');
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const clearTimer = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-
-  useEffect(() => {
-    const current = roles[roleIndex % roles.length];
-
-    const typingSpeed = 90;
-    const deletingSpeed = 45;
-    const endPause = 1400;
-    const startPause = 450;
-
-    if (!isDeleting && displayText === current) {
-      timeoutRef.current = setTimeout(() => setIsDeleting(true), endPause);
-      return clearTimer;
-    }
-
-    if (isDeleting && displayText === '') {
-      timeoutRef.current = setTimeout(() => {
-        setIsDeleting(false);
-        setRoleIndex((i) => (i + 1) % roles.length);
-      }, startPause);
-      return clearTimer;
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      const nextText = isDeleting
-        ? current.slice(0, Math.max(0, displayText.length - 1))
-        : current.slice(0, displayText.length + 1);
-      setDisplayText(nextText);
-    }, isDeleting ? deletingSpeed : typingSpeed);
-
-    return clearTimer;
-  }, [displayText, isDeleting, roleIndex, roles]);
-
   return (
     <section className={styles.hero} id="hero">
-      <div className={styles.accentGlow}></div>
       <div className={styles.gridOverlay}></div>
       <div className={styles.lightBeam}></div>
 
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.badgeRow}>
-            <span className={styles.badge}>&#47;&#47; Crafting delightful digital experiences</span>
+            <span className={styles.badge}>Custom B2B software for founders and operators</span>
             <span className={styles.badgeStatus}>
               <span className={styles.pulseDot}></span>
-              Open to collaborations
+              Taking select builds
             </span>
           </div>
 
-          <h1 className={styles.title}>
-            Hi, I&apos;m <span className={styles.highlight}>Srinu Duggempudi</span>
-          </h1>
-          <p className={styles.roles} aria-label="Professional roles">
-            <span className={styles.typewriter}>{displayText}</span>
-            <span className={styles.caret} aria-hidden="true"></span>
-          </p>
+          <h1 className={styles.title}>Stop losing money on broken workflows. I build custom web apps that automate your operations.</h1>
           <p className={styles.subtitle}>
-            Full Stack Engineer blending <span>React</span>, <span>Django</span>, and cloud-native tooling to launch resilient products.
-          </p>
-          <p className={styles.description}>
-            With 5+ years building secure, real-time platforms, I help teams move ideas from roadmap to release. From rapid
-            prototypes to enterprise ecosystems, I focus on performance, accessibility, and developer experience.
+            From rapid MVPs for startups to internal tools for scaling businesses. No bloated agency teams--just senior-level execution.
           </p>
 
           <div className={styles.ctaRow}>
-            <a href="#projects" className={styles.primaryBtn}>
-              Explore Projects
+            <a href="#contact" className={styles.primaryBtn}>
+              Book a Discovery Call
               <span className={styles.btnGlow}></span>
             </a>
-            <a href="#contact" className={styles.secondaryBtn}>
-              Book a Discovery Call
+            <a href="#services" className={styles.secondaryBtn}>
+              See Services
             </a>
-            <div className={styles.responseBadge}>
-              <span className={styles.responseDot}></span>
-              Avg. response time: <strong>24h</strong>
-            </div>
           </div>
 
-          <div className={styles.socialProof}>
-            <div className={styles.avatarStack}>
-              <span className={styles.avatar}></span>
-              <span className={styles.avatar}></span>
-              <span className={styles.avatar}></span>
-              <span className={styles.avatar}></span>
-            </div>
-            <p className={styles.socialText}>
-              Partnering with fintech, healthtech, and AI teams to build real-time, human-centered experiences.
-            </p>
-          </div>
+          <p className={styles.socialProof}>6+ Years Experience | Specializing in React &amp; Python/Django Ecosystems</p>
         </div>
 
-        <div className={styles.showcase}>
-          <div className={styles.orb}></div>
-          <div className={styles.ring}></div>
-
-          <div className={styles.glassCard}>
-            <span className={styles.cardTag}>Live Project</span>
-            <h3>Realtime Analytics Suite</h3>
-            <p>
-              Streaming dashboards, anomaly detection, and automated reporting delivering insights 30% faster for global teams.
-            </p>
-            <div className={styles.cardFooter}>
-              <span className={styles.cardMetric}>
-                <span className={styles.metricNumber}>+120%</span>
-                Engagement
-              </span>
-              <span className={styles.cardMetric}>
-                <span className={styles.metricNumber}>99.9%</span>
-                Uptime
-              </span>
+        <div className={styles.showcase} aria-label="Example project delivery dashboard">
+          <div className={styles.planCard}>
+            <span className={styles.cardTag}>Build Plan</span>
+            <h2>From messy process to working software</h2>
+            <div className={styles.workflowList}>
+              <div className={styles.workflowItem}>
+                <span className={styles.workflowNumber}>01</span>
+                <div>
+                  <strong>Map the revenue leak</strong>
+                  <p>Find the manual handoffs, missing data, and slow approvals costing the business time.</p>
+                </div>
+              </div>
+              <div className={styles.workflowItem}>
+                <span className={styles.workflowNumber}>02</span>
+                <div>
+                  <strong>Ship the first useful version</strong>
+                  <p>Auth, dashboards, billing, workflows, and APIs built around the highest-value job.</p>
+                </div>
+              </div>
+              <div className={styles.workflowItem}>
+                <span className={styles.workflowNumber}>03</span>
+                <div>
+                  <strong>Improve after launch</strong>
+                  <p>Measure usage, remove friction, and roll out the next feature set without drama.</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className={styles.codeSnippet}>
-            <div className={styles.codeHeader}>
-              <span className={styles.dot}></span>
-              <span className={styles.dot}></span>
-              <span className={styles.dot}></span>
-            </div>
-            <pre className={styles.pre}>
-{`const pipeline = buildPipeline({
-  stack: ['React', 'Django', 'AWS'],
-  metrics: { availability: '99.9%', latency: '<120ms' },
-});
-
-launchProduct({
-  featureFlags: true,
-  release: 'global',
-});`}
-            </pre>
-          </div>
-
-          <div className={styles.floatingBadge}>
-            <span className={styles.badgeIcon} aria-hidden="true">&#47;&#47;</span>
+          <div className={styles.metricPanel}>
             <div>
-              <strong>Performance-first mindset</strong>
-              <span>Optimized CI/CD, automated QA, and measurable outcomes.</span>
+              <span className={styles.metricLabel}>Typical sprint</span>
+              <strong>4-8 weeks</strong>
+            </div>
+            <div>
+              <span className={styles.metricLabel}>Core focus</span>
+              <strong>MVPs + internal tools</strong>
             </div>
           </div>
         </div>

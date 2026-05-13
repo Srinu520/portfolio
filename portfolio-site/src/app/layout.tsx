@@ -4,24 +4,29 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 
 const siteUrl = 'https://www.srinud.com';
-const siteName = 'Srinu Duggempudi';
+const siteName = 'Srinu D';
+const siteTitle = 'Srinu D | Custom B2B Software & MVP Development';
+const siteDescription =
+  'Custom B2B software, MVP development, workflow automation, and ongoing product support for founders and growing teams.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
   title: {
-    default: 'Srinu Duggempudi | Full Stack Developer',
+    default: siteTitle,
     template: '%s | ' + siteName,
   },
-  description:
-    'Portfolio and contact hub for Srinu Duggempudi, a full stack engineer crafting resilient experiences with React, Next.js, and Django.',
+  description: siteDescription,
   keywords: [
     'Srinu',
     'Srinu D',
     'Srinu Duggempudi',
     'srinud',
     'srinud.com',
-    'Full Stack Developer',
+    'Custom B2B Software',
+    'MVP Development',
+    'Workflow Automation',
+    'Internal Tools',
     'React',
     'Next.js',
     'Django',
@@ -40,17 +45,15 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteUrl,
     siteName: siteName,
-    title: 'Srinu Duggempudi | Full Stack Developer',
-    description:
-      'Portfolio and contact hub for Srinu Duggempudi, a full stack engineer crafting resilient experiences with React, Next.js, and Django.',
+    title: siteTitle,
+    description: siteDescription,
     locale: 'en_US',
     images: ['/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Srinu Duggempudi | Full Stack Developer',
-    description:
-      'Portfolio and contact hub for Srinu Duggempudi, a full stack engineer crafting resilient experiences with React, Next.js, and Django.',
+    title: siteTitle,
+    description: siteDescription,
     images: ['/opengraph-image.png'],
   },
   verification: {
@@ -80,10 +83,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const personJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: siteName,
+    name: 'Srinu Duggempudi',
     url: siteUrl,
-    jobTitle: 'Full Stack Developer',
-    knowsAbout: ['React', 'Next.js', 'Django', 'Python', 'TypeScript', 'Full Stack Engineering'],
+    jobTitle: 'Custom B2B Software and MVP Development Consultant',
+    knowsAbout: ['React', 'Next.js', 'Django', 'Python', 'TypeScript', 'MVP Development', 'Workflow Automation'],
     email: 'mailto:srinuduggempudi26@gmail.com',
     telephone: '+91-9391339072',
     sameAs: [siteUrl],

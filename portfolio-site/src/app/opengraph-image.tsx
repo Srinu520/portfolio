@@ -8,8 +8,8 @@ export const size = {
 export const contentType = 'image/png';
 
 export default function OpenGraphImage() {
-  const name = 'Srinu Duggempudi';
-  const tagline = 'Full Stack Developer · React · Next.js · Django';
+  const name = 'Srinu D';
+  const tagline = 'Custom B2B Software & MVP Development';
   const domain = 'srinud.com';
 
   return new ImageResponse(

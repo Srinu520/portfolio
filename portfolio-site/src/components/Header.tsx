@@ -19,7 +19,7 @@ const Header: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.logo}>
           <h1>Srinu</h1>
-          <span className={styles.subtitle}>Full Stack Developer</span>
+          <span className={styles.subtitle}>B2B Software</span>
         </div>
 
         <button className={styles.menuToggle} onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -29,14 +29,14 @@ const Header: React.FC = () => {
         </button>
 
         <nav className={`${styles.nav} ${isMenuOpen ? styles.active : ''}`}>
-          <button onClick={() => scrollToSection('about')} className={styles.navLink}>
-            About
+          <button onClick={() => scrollToSection('services')} className={styles.navLink}>
+            Services
           </button>
           <button onClick={() => scrollToSection('projects')} className={styles.navLink}>
-            Projects
+            Case Studies
           </button>
-          <button onClick={() => scrollToSection('skills')} className={styles.navLink}>
-            Skills
+          <button onClick={() => scrollToSection('pricing')} className={styles.navLink}>
+            Pricing
           </button>
           <button onClick={() => scrollToSection('contact')} className={styles.navLink}>
             Contact

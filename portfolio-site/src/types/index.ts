@@ -3,6 +3,10 @@ export interface Project {
   title: string;
   description: string;
   longDescription: string;
+  clientIndustry: string;
+  problem: string;
+  solution: string;
+  result: string;
   role: string;
   technologies: string[];
   highlights: string[];
@@ -12,14 +16,3 @@ export interface Project {
   source?: string;
 }
 
-export interface Skill {
-  category: string;
-  items: string[];
-}
-
-export interface Experience {
-  company: string;
-  position: string;
-  period: string;
-  description: string;
-}
