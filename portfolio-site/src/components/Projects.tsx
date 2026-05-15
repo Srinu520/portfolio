@@ -41,7 +41,11 @@ const Projects: React.FC = () => {
 
         <div className={styles.projectsGrid}>
           {projects.map((project, index) => (
-            <article key={project.id} className={styles.projectCard} style={{ animationDelay: `${index * 0.08}s` }}>
+            <article
+              key={project.id}
+              className={`${styles.projectCard} ${index === 0 ? styles.featuredProject : ''}`}
+              style={{ animationDelay: `${index * 0.08}s` }}
+            >
               <header className={styles.cardHeader}>
                 <span className={styles.projectIndex}>{String(index + 1).padStart(2, '0')}</span>
                 <div>
@@ -81,7 +85,11 @@ const Projects: React.FC = () => {
                       View Live
                     </a>
                   )}
-                  <button className={styles.expandBtn} onClick={() => setSelectedProject(project.id)}>
+                  <button
+                    className={styles.expandBtn}
+                    onClick={() => setSelectedProject(project.id)}
+                    aria-label={`Read ${project.title} case study details`}
+                  >
                     Details
                   </button>
                 </div>

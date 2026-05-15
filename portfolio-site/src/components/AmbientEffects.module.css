@@ -1,0 +1,71 @@
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: paint;
+}
+
+.cursorField,
+.sweep,
+.noise {
+  position: absolute;
+  inset: 0;
+}
+
+.cursorField {
+  background:
+    radial-gradient(
+      520px circle at var(--cursor-x, 62vw) var(--cursor-y, 36vh),
+      color-mix(in srgb, var(--color-primary) 15%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      380px circle at calc(var(--cursor-x, 62vw) + 14vw) calc(var(--cursor-y, 36vh) + 12vh),
+      color-mix(in srgb, var(--color-accent) 9%, transparent),
+      transparent 62%
+    );
+  opacity: 0.88;
+  transition: opacity 0.25s ease;
+}
+
+.sweep {
+  inset: -20%;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 20%,
+      color-mix(in srgb, var(--color-primary) 6%, transparent) 48%,
+      transparent 72%
+    );
+  opacity: 0.75;
+  transform: translateX(-35%) rotate(4deg);
+  animation: ambientSweep 16s ease-in-out infinite;
+}
+
+.noise {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+  opacity: 0.42;
+}
+
+@keyframes ambientSweep {
+  0%,
+  100% {
+    transform: translateX(-40%) rotate(4deg);
+  }
+
+  50% {
+    transform: translateX(18%) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient {
+    display: none;
+  }
+}

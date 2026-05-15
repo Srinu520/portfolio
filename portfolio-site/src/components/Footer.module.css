@@ -1,18 +1,18 @@
 .footer {
   position: relative;
   overflow: hidden;
-  padding: clamp(56px, 7vw, 84px) clamp(20px, 5vw, 72px) clamp(24px, 4vw, 34px);
+  padding: clamp(56px, 7vw, 88px) clamp(20px, 5vw, 72px) clamp(24px, 4vw, 34px);
   border-top: 1px solid var(--color-border);
   background:
-    radial-gradient(760px 360px at 15% 0%, rgba(0, 102, 204, 0.13), transparent 62%),
-    radial-gradient(680px 340px at 92% 18%, rgba(255, 107, 53, 0.1), transparent 58%),
-    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+    linear-gradient(145deg, rgba(125, 211, 252, 0.08), transparent 38%),
+    linear-gradient(215deg, rgba(245, 158, 11, 0.08), transparent 34%),
+    var(--color-bg);
 }
 
 .container {
   position: relative;
   z-index: 1;
-  width: min(1180px, 100%);
+  width: min(var(--container-width), 100%);
   margin: 0 auto;
 }
 
@@ -22,17 +22,11 @@
   gap: 24px;
   align-items: center;
   margin-bottom: clamp(38px, 6vw, 64px);
-  padding: clamp(24px, 4vw, 34px);
-  border: 1px solid rgba(10, 48, 110, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.76);
-  box-shadow: 0 22px 58px rgba(8, 24, 56, 0.08);
-  backdrop-filter: blur(18px);
-}
-
-[data-theme='dark'] .ctaPanel {
-  background: rgba(22, 27, 34, 0.78);
-  border-color: rgba(255, 255, 255, 0.12);
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-surface) 86%, transparent);
+  box-shadow: var(--shadow-strong);
 }
 
 .eyebrow {
@@ -49,8 +43,8 @@
   max-width: 760px;
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(1.65rem, 3.4vw, 2.55rem);
-  line-height: 1.1;
+  font-size: clamp(1.65rem, 3.4vw, 2.65rem);
+  line-height: 1.08;
   letter-spacing: 0;
 }
 
@@ -60,19 +54,18 @@
   justify-content: center;
   min-height: 48px;
   padding: 0 20px;
-  border-radius: 8px;
-  background: linear-gradient(130deg, var(--color-primary), #087ea4 54%, var(--color-accent));
-  color: #ffffff;
+  border-radius: var(--radius-sm);
+  background: #f8fafc;
+  color: #0f172a;
   font-size: 0.92rem;
   font-weight: 900;
   white-space: nowrap;
-  box-shadow: 0 16px 32px rgba(0, 102, 204, 0.22);
+  box-shadow: 0 16px 32px rgba(248, 250, 252, 0.12);
 }
 
 .ctaButton:hover {
-  color: #ffffff;
+  color: #0f172a;
   transform: translateY(-2px);
-  box-shadow: 0 22px 42px rgba(0, 102, 204, 0.28);
 }
 
 .content {
@@ -90,7 +83,7 @@
 .brand {
   display: inline-flex;
   margin-bottom: 14px;
-  color: var(--color-primary);
+  color: var(--color-text);
   font-size: 1.45rem;
   line-height: 1;
   font-weight: 900;
@@ -102,7 +95,7 @@
 }
 
 .brandSection p {
-  max-width: 440px;
+  max-width: 460px;
   margin: 0;
   color: var(--color-text-secondary);
   font-size: 0.98rem;
@@ -123,20 +116,16 @@
   padding: 0 10px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.58);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
   color: var(--color-text-secondary);
   font-size: 0.78rem;
-  font-weight: 800;
-}
-
-[data-theme='dark'] .badges span {
-  background: rgba(255, 255, 255, 0.06);
+  font-weight: 850;
 }
 
 .section h3 {
   margin: 0 0 16px;
   color: var(--color-text);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -155,7 +144,7 @@
 .section a {
   color: var(--color-text-secondary);
   font-size: 0.94rem;
-  font-weight: 650;
+  font-weight: 750;
   overflow-wrap: anywhere;
 }
 
@@ -173,22 +162,19 @@
   gap: 4px;
   padding: 14px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.52);
-}
-
-[data-theme='dark'] .contactList a {
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .contactList a:hover {
-  border-color: rgba(0, 102, 204, 0.36);
+  border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
   transform: translateY(-2px);
 }
 
 .contactList span {
   color: var(--color-text-secondary);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;

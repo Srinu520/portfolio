@@ -82,32 +82,34 @@ const Contact: React.FC = () => {
           </div>
 
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <div className={styles.formGroup}>
-              <label htmlFor="name">Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Your name"
-                disabled={status === 'loading'}
-              />
-            </div>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name">Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your name"
+                  disabled={status === 'loading'}
+                />
+              </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="email">Email *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="your@email.com"
-                disabled={status === 'loading'}
-              />
+              <div className={styles.formGroup}>
+                <label htmlFor="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="your@email.com"
+                  disabled={status === 'loading'}
+                />
+              </div>
             </div>
 
             <div className={styles.formGroup}>

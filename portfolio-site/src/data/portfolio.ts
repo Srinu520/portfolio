@@ -111,5 +111,43 @@ export const projects: Project[] = [
     image: 'edplatform',
     live: 'https://srinu520.github.io/edplatform/',
   },
+  {
+    id: 5,
+    title: 'Swaasthfiit Wellness Ecosystem',
+    description:
+      'A multi-portal wellness platform connecting mobile users, business partners, admin operations, subscriptions, referrals, and payments.',
+    longDescription:
+      'Swaasthfiit is a health and fitness ecosystem split across user, partner, and admin surfaces. The codebase includes a React Native user app, React/Vite admin and partner portals, and Express/TypeScript services for user, partner, and admin APIs. Together, the system supports onboarding, health activity tracking, subscription plans, competitions, rewards, business partner onboarding, KYB checks, media management, and payment flows.',
+    clientIndustry: 'Health, Fitness & Wellness',
+    problem:
+      'The business needed more than a consumer app. It needed separate workflows for users, business partners, and internal operators without forcing every team into the same interface.',
+    solution:
+      'I built a multi-repo platform with a React Native mobile app, admin and partner web portals, and Express/TypeScript APIs backed by MySQL, JWT/client-id security, file uploads, Swagger docs, and payment/KYC integrations.',
+    result:
+      'Gave the business a full operating system for launching memberships, running competitions, managing partners, tracking user activity, handling referrals, and collecting payments from one connected product ecosystem.',
+    role: 'Full Stack & Mobile Engineer',
+    technologies: [
+      'React Native',
+      'React.js',
+      'TypeScript',
+      'Vite',
+      'Express.js',
+      'MySQL',
+      'Redux Toolkit',
+      'PayU',
+      'Deepvue',
+      'Health Connect',
+      'Swagger/OpenAPI',
+    ],
+    highlights: [
+      'Built the user mobile app with onboarding, profile completion, activity tracking, goals, competitions, coins, subscriptions, and payment screens',
+      'Implemented admin workflows for clients, partners, competitions, advertisements, subscription plans, blood tests, and permission-controlled navigation',
+      'Built partner onboarding flows for business details, collaborators, subscriptions, QR/referral handling, and KYB verification',
+      'Developed Express/TypeScript API services with MySQL access, JWT/client-id middleware, request timeouts, Winston logging, Swagger documentation, and upload handling',
+      'Integrated PayU payment initiation/callback flows and Deepvue verification flows for Aadhaar, PAN, GSTIN, and FSSAI checks',
+      'Added automated tests around authentication, competitions, referrals, user goals, profile completion, payments, and route protection',
+    ],
+    image: 'swaasthfiit-wellness',
+  },
 ];
 

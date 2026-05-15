@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import AmbientEffects from '@/components/AmbientEffects';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Projects from '@/components/Projects';
@@ -10,6 +11,7 @@ import Footer from '@/components/Footer';
 export default function HomePage() {
   return (
     <div className="app">
+      <AmbientEffects />
       <Header />
       <main>
         <Hero />

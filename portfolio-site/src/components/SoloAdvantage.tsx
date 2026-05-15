@@ -19,14 +19,17 @@ const SoloAdvantage: React.FC = () => {
           <div>
             <span>01</span>
             <strong>Direct technical decisions</strong>
+            <p>No account-manager relay before scope or product decisions move.</p>
           </div>
           <div>
             <span>02</span>
             <strong>Less handoff risk</strong>
+            <p>The same person understands the business problem and the code.</p>
           </div>
           <div>
             <span>03</span>
             <strong>Faster feedback loops</strong>
+            <p>Shorter path from your feedback to the next working version.</p>
           </div>
         </div>
       </div>

@@ -17,18 +17,27 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <h1>Srinu</h1>
-          <span className={styles.subtitle}>B2B Software</span>
-        </div>
+        <button className={styles.logo} onClick={() => scrollToSection('hero')} aria-label="Go to top">
+          <span className={styles.logoMark}>SD</span>
+          <span className={styles.logoText}>
+            <span className={styles.logoName}>Srinu D</span>
+            <span className={styles.subtitle}>B2B Software</span>
+          </span>
+        </button>
 
-        <button className={styles.menuToggle} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button
+          className={styles.menuToggle}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="site-navigation"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <nav className={`${styles.nav} ${isMenuOpen ? styles.active : ''}`}>
+        <nav id="site-navigation" className={`${styles.nav} ${isMenuOpen ? styles.active : ''}`} aria-label="Primary navigation">
           <button onClick={() => scrollToSection('services')} className={styles.navLink}>
             Services
           </button>
@@ -43,9 +52,19 @@ const Header: React.FC = () => {
           </button>
         </nav>
 
-        <button className={styles.themeToggle} onClick={toggleTheme} title={isDark ? 'Light mode' : 'Dark mode'}>
-          {isDark ? '☀️' : '🌙'}
-        </button>
+        <div className={styles.actions}>
+          <button className={styles.headerCta} onClick={() => scrollToSection('contact')}>
+            Book Call
+          </button>
+          <button
+            className={styles.themeToggle}
+            onClick={toggleTheme}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            <span className={styles.themeIcon} data-mode={isDark ? 'dark' : 'light'} aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
     </header>
   );

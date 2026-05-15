@@ -8,6 +8,7 @@ interface ServiceCard {
   title: string;
   problem: string;
   solution: string;
+  outcome: string;
 }
 
 const services: ServiceCard[] = [
@@ -17,6 +18,7 @@ const services: ServiceCard[] = [
     problem: 'Startups burn cash waiting 6+ months for a V1.',
     solution:
       'Secure auth, core feature logic, billing, and a clean UI shipped in weeks so you can start acquiring users.',
+    outcome: 'Launch a paid or testable product before momentum dies.',
   },
   {
     icon: 'workflow',
@@ -24,6 +26,7 @@ const services: ServiceCard[] = [
     problem: 'Teams bleed hours copy-pasting data across disconnected tools.',
     solution:
       'Custom dashboards that link your APIs, sync databases, and automate your manual operational tasks.',
+    outcome: 'Recover team hours and make operations easier to audit.',
   },
   {
     icon: 'support',
@@ -31,6 +34,7 @@ const services: ServiceCard[] = [
     problem: "Software isn't a one-and-done project. Legacy systems get slow and break.",
     solution:
       'Retainer-based monthly support, tech stack migrations, and iterative feature rollouts.',
+    outcome: 'Keep the product stable while adding features that matter.',
   },
 ];
 
@@ -91,10 +95,13 @@ const Services: React.FC = () => {
         </div>
 
         <div className={styles.grid}>
-          {services.map((service) => (
+          {services.map((service, index) => (
             <article key={service.title} className={styles.card}>
-              <div className={styles.iconWrap}>
-                <ServiceIcon type={service.icon} />
+              <div className={styles.cardTop}>
+                <span className={styles.cardIndex}>{String(index + 1).padStart(2, '0')}</span>
+                <div className={styles.iconWrap}>
+                  <ServiceIcon type={service.icon} />
+                </div>
               </div>
               <h3>{service.title}</h3>
               <div className={styles.cardBody}>
@@ -104,6 +111,10 @@ const Services: React.FC = () => {
                 <p>
                   <strong>Solution:</strong> {service.solution}
                 </p>
+              </div>
+              <div className={styles.outcome}>
+                <span>Outcome</span>
+                <p>{service.outcome}</p>
               </div>
             </article>
           ))}

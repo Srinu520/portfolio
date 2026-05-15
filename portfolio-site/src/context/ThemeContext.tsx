@@ -8,15 +8,16 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const THEME_STORAGE_KEY = 'portfolio-theme';
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const nextIsDark = saved ? saved === 'dark' : prefersDark;
+    const saved = localStorage.getItem(THEME_STORAGE_KEY);
+    const nextIsDark = saved ? saved === 'dark' : true;
+    localStorage.removeItem('theme');
     setIsDark(nextIsDark);
     document.documentElement.setAttribute('data-theme', nextIsDark ? 'dark' : 'light');
     setHasMounted(true);
@@ -24,7 +25,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (!hasMounted) return;
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   }, [isDark, hasMounted]);
 
