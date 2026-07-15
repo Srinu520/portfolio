@@ -1,12 +1,18 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { projects } from '@/data/portfolio';
 import styles from './Projects.module.css';
 
 const Projects: React.FC = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const activeProject = useMemo(() => projects.find((project) => project.id === selectedProject) ?? null, [selectedProject]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -43,7 +49,7 @@ const Projects: React.FC = () => {
           {projects.map((project, index) => (
             <article
               key={project.id}
-              className={`${styles.projectCard} ${index === 0 ? styles.featuredProject : ''}`}
+              className={styles.projectCard}
               style={{ animationDelay: `${index * 0.08}s` }}
             >
               <header className={styles.cardHeader}>
@@ -99,59 +105,75 @@ const Projects: React.FC = () => {
         </div>
       </div>
 
-      {activeProject && (
-        <div className={styles.modalOverlay} role="dialog" aria-modal="true" onClick={() => setSelectedProject(null)}>
-          <div className={styles.modal} onClick={(event) => event.stopPropagation()}>
-            <button className={styles.closeBtn} onClick={() => setSelectedProject(null)} aria-label="Close case study">
-              x
-            </button>
+      {activeProject &&
+        isMounted &&
+        createPortal(
+          <div className={styles.modalOverlay} role="dialog" aria-modal="true" onClick={() => setSelectedProject(null)}>
+            <div className={styles.modal} onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                className={styles.closeBtn}
+                onClick={() => setSelectedProject(null)}
+                aria-label="Close case study"
+                title="Close"
+              >
+                <span className={styles.closeIcon} aria-hidden="true" />
+                <span>Close</span>
+              </button>
 
-            <div className={styles.modalHeader}>
-              <p className={styles.industry}>{activeProject.clientIndustry}</p>
-              <h3 className={styles.modalTitle}>{activeProject.title}</h3>
-            </div>
-
-            <div className={styles.modalBody}>
-              <p className={styles.modalDesc}>{activeProject.longDescription}</p>
-
-              <div className={styles.modalGrid}>
-                <section>
-                  <h4>The Problem</h4>
-                  <p>{activeProject.problem}</p>
-                </section>
-                <section>
-                  <h4>The Solution</h4>
-                  <p>{activeProject.solution}</p>
-                </section>
-                <section>
-                  <h4>The Result</h4>
-                  <p>{activeProject.result}</p>
-                </section>
+              <div className={styles.modalHeader}>
+                <p className={styles.industry}>{activeProject.clientIndustry}</p>
+                <h3 className={styles.modalTitle}>{activeProject.title}</h3>
               </div>
 
-              <div className={styles.highlights}>
-                <h4>Build Highlights</h4>
-                <ul>
-                  {activeProject.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
+              <div className={styles.modalBody}>
+                <p className={styles.modalDesc}>{activeProject.longDescription}</p>
 
-              <div className={styles.allTechs}>
-                <h4>Technology Used</h4>
-                <div className={styles.techGridFull}>
-                  {activeProject.technologies.map((tech) => (
-                    <span key={tech} className={styles.techFull}>
-                      {tech}
-                    </span>
-                  ))}
+                <div className={styles.modalGrid}>
+                  <section>
+                    <h4>The Problem</h4>
+                    <p>{activeProject.problem}</p>
+                  </section>
+                  <section>
+                    <h4>The Solution</h4>
+                    <p>{activeProject.solution}</p>
+                  </section>
+                  <section>
+                    <h4>The Result</h4>
+                    <p>{activeProject.result}</p>
+                  </section>
+                </div>
+
+                <div className={styles.highlights}>
+                  <h4>Build Highlights</h4>
+                  <ul>
+                    {activeProject.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className={styles.allTechs}>
+                  <h4>Technology Used</h4>
+                  <div className={styles.techGridFull}>
+                    {activeProject.technologies.map((tech) => (
+                      <span key={tech} className={styles.techFull}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.modalActions}>
+                  <button type="button" className={styles.modalCloseAction} onClick={() => setSelectedProject(null)}>
+                    Close details
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </section>
   );
 };

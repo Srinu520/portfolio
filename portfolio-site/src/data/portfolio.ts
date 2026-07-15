@@ -2,6 +2,48 @@ import type { Project } from '@/types';
 
 export const projects: Project[] = [
   {
+    id: 6,
+    title: 'AI-Powered Solar PO-to-Order Automation',
+    description:
+      'An AI-assisted operations platform that extracts solar purchase orders, validates line items, and creates reviewable order drafts.',
+    longDescription:
+      'Solar PO-to-Order Automation is a draft-first operations workspace for turning customer purchase orders into validated internal order drafts. It combines deterministic PDF and OCR extraction with OpenAI and Google Gemini vision fallbacks for unknown or changed document layouts, plus email intake, duplicate detection, customer and part master data, part-number mapping, commercial validation, review queues, template onboarding, and auditable draft creation.',
+    clientIndustry: 'AI, Solar Operations & Order Management',
+    problem:
+      'Operations teams needed to process customer purchase orders faster while still handling inconsistent document layouts and catching duplicate files, unknown part numbers, quantity mismatches, and pricing errors before fulfillment.',
+    solution:
+      'I built a React and FastAPI workspace that uses OCR and AI vision fallbacks to extract changing PO layouts, maps line items to internal parts, validates commercial data, routes exceptions for human review, and creates internal order drafts.',
+    result:
+      'Delivered a centralized, auditable PO workflow that reduces manual re-entry, adapts to unfamiliar document formats, makes validation issues visible, and keeps final order creation under operator control.',
+    role: 'Full Stack & AI Engineer',
+    technologies: [
+      'OpenAI API',
+      'Google Gemini',
+      'FastAPI',
+      'React.js',
+      'TypeScript',
+      'Material UI',
+      'TanStack Query',
+      'Tesseract OCR',
+      'PyMuPDF',
+      'SQLAlchemy',
+      'PostgreSQL',
+      'Redis',
+      'Celery',
+      'MinIO',
+      'Docker Compose',
+    ],
+    highlights: [
+      'Combined template-based extraction, PDF parsing, and OCR for reliable PO document processing',
+      'Added OpenAI and Google Gemini vision fallbacks for unknown or changed customer PO layouts',
+      'Built template-onboarding workflows that turn reviewed AI extraction results into reusable customer mappings',
+      'Implemented SHA-256 duplicate detection, customer and part master data, and internal part-number mapping',
+      'Added quantity, price, total, and mapping validation with review queues for resolving exceptions',
+      'Designed the MVP around a draft-only guardrail so AI-assisted automation never creates final orders without human review',
+    ],
+    image: 'solar-po-order-automation',
+  },
+  {
     id: 1,
     title: 'ASTRO INDU',
     description: 'A paid consultation platform for live expert sessions, wallet billing, and horoscope tools.',
